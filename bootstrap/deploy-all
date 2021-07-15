@@ -69,7 +69,7 @@ if [ -f "$ERRORLOG" ]; then
 fi
 
 # deploy RDev
-find ../rholang \
+find ../rholang ../../rholang \
 -name "*.rho" \
 | deployFiles
 
@@ -93,8 +93,8 @@ echo "generated/generated.create-master-contract-directory.rho"| deployFiles | t
 echo "$ME: Proposing generated/generated.create-master-contract-directory.rho" |tee -a log/create-master-directory.log
 rnode --grpc-port 40402 propose 2>&1 | tee -a log/deployment.log
 
-echo "$ME: Creating MasterURI.localhost.json"
-echo "{\"localhostNETWORK\": { \"MasterURI\":" > ../src/MasterURI.localhost.json
+echo "$ME: Creating ../src/networks/MasterURI.localhost.json"
+echo "{\"localhostNETWORK\": { \"MasterURI\":" > ../src/networks/MasterURI.localhost.json
 grep "ReadcapURI" "$LOGFILE" |tail -1 | cut -d' ' -f3|sed '
 s/\}/"/
 s/^/"/
@@ -108,8 +108,8 @@ rnode --grpc-port 40402 propose 2>&1 | tee -a log/deployment.log
 echo "$ME: Waiting for rnode to finalize (10s)" && sleep 10 && echo "$ME: Stopping deployment rnode"
 kill $PID && sleep 2
 
-echo "$ME: Creating RDev snapshot"
-./create-snapshot RDev
+echo "$ME: Creating rdev snapshot"
+./create-snapshot rdev
 
 # for some reason, deploy screws up the terminal, so set it right
 stty echo || exit 0 # exit 0 is for github actions, where there's no terminal
