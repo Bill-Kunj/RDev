@@ -9,7 +9,7 @@
     "lint:types": "tsc -p jsconfig.json",
     "start": "webpack-dev-server --open",
     "build": "webpack",
-    "build:deploy": "npm run build; cp -pr src/actions/ dist/; cp src/rdev-development.css dist/"
+    "build:deploy": "npm run build; cp -pr src/actions/ dist/; cp src/rdev-development.css dist/; cp src/favicon.ico dist/"
   },
   "contributors": [
     "Jim Whitescarver",
