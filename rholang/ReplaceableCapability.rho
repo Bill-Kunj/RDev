@@ -3,7 +3,7 @@ new return(`rho:io:stdout`), // return(`rho:rchain:deployId`),
    new uriCh, valueCh in {
     insertArbitrary!(bundle+{*ReplaceableCapability}, *uriCh) |
     for (@uri <- uriCh) {
-      return!(("URI", uri))
+      return!(("#define ReplaceableCapability ", uri))
     }
   } |
  contract ReplaceableCapability(capability, ret) = {

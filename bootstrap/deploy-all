@@ -68,19 +68,9 @@ if [ -f "$ERRORLOG" ]; then
    exit 2;
 fi
 
-# deploy rgov
+# deploy RDev
 find \
-../Ballot.rho \
-../Group.rho \
-../CrowdFund.rho \
-../Directory.rho \
-../Inbox.rho \
-../Issue.rho \
-../Kudos.rho \
-../memberIdGovRev.rho \
-../RevIssuer.rho \
-../Echo.rho \
-./voter-insertion.rho \
+../rdev/Directory.rho \
 | deployFiles
 
 if [ -f "$ERRORLOG" ]; then
@@ -115,13 +105,11 @@ echo "$ME: listing master directory"
 ./deploy listMasterURI.rho
 rnode --grpc-port 40402 propose 2>&1 | tee -a log/deployment.log
 
-echo "$ME: creating member directory"
-./deploy ../MemberDirectory.rho
-rnode --grpc-port 40402 propose 2>&1 | tee -a log/deployment.log
-
 echo "$ME: Waiting for rnode to finalize (10s)" && sleep 10 && echo "$ME: Stopping deployment rnode"
 kill $PID && sleep 2
 
-echo "$ME: Creating rgov snapshot"
-./create-snapshot rgov
-stty echo # for some reason, deploy screws up the terminal, so set it right
+echo "$ME: Creating RDev snapshot"
+./create-snapshot RDev
+
+# for some reason, deploy screws up the terminal, so set it right
+stty echo || exit 0 # exit 0 is for github actions, where there's no terminal

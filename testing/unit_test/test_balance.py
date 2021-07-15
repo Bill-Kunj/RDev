@@ -1,17 +1,17 @@
 #!/usr/bin/python3
 
-from pyrgov.rgov import rgovAPI
+from pyrdev.rdev import rdevAPI
 import pathlib
 
 if __name__ != pathlib.Path(__file__).stem and __name__ != '__main__':
     assert False
 
-rgov = rgovAPI('localhost')
-new1 = rgov.get_private_key('anonymous')
-admin = rgov.get_private_key('bootstrap')
+rdev = rdevAPI('localhost')
+new1 = rdev.get_private_key('anonymous')
+admin = rdev.get_private_key('bootstrap')
 
-balance = rgov.checkBalance(new1.get_public_key().get_rev_address())
+balance = rdev.checkBalance(new1.get_public_key().get_rev_address())
 assert balance == 0
 
-balance = rgov.checkBalance(admin.get_public_key().get_rev_address())
+balance = rdev.checkBalance(admin.get_public_key().get_rev_address())
 assert balance != 0

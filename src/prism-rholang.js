@@ -29,15 +29,15 @@ export const RholangGrammar = {
     /\(|\[|\{|\}|\]|\)|:/,
   ],
   number: [
-    /0b[0-1]+/, // binary integer
-    /0x([0-9a-fA-F])+/, // hexadecimal integer
-    /\b[0-9]\b([0-9]|_[0-9])*[l]?/i, // decimal long integer
-    /\b[0-9]\b([0-9]|_[0-9])*\.[0-9]([0-9]|_[0-9])*/, // decimal float
-    /\.[0-9]([0-9]|_[0-9])*(e[-+])?[0-9]([0-9]|_[0-9])*[fd]?/i, // decimal float lacking leading zero
-    /\b[0-9]\b([0-9]|_[0-9])*(e[-+])?[0-9]([0-9]|_[0-9])*[fd]?/i, // float in mantissa/exponent form
-    // This should come last
-    /0[0-7]*/, // octal integer (including literal zero!)
-  ],
+      /0b[0-1]+/, // binary integer
+      /0x([0-9a-fA-F])+/, // hexadecimal integer
+      /\b[0-9]\b([0-9]|_[0-9])*[Ll]?/, // decimal long integer
+      /\b[0-9]\b([0-9]|_[0-9])*\.[0-9]([0-9]|_[0-9])*/, // decimal 'dot' float
+      /\.[0-9]([0-9]|_[0-9])*(([eE][-+])[0-9]([0-9]|_[0-9])+)?[fFDd]/, // float lacking leading zero
+      /\b[0-9]\b([0-9]|_[0-9])*(([eE][-+])[0-9]([0-9]|_[0-9])+)?[fFDd]/, // float in mantissa/exponent form
+      // This should come last
+      /0[0-7]+/, // octal integer
+    ],
   operator: [
     // TODO The literal underscore regex needs help
     /!|<-|<<-|<=|=>|_|\.\.\./,

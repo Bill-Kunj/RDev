@@ -17,59 +17,23 @@ import { RholangGrammar } from './prism-rholang';
 // TODO(#185): stop pretending MasterURI is a design-time constant.
 // Meanwhile, see bootstrap/deploy-all for MasterURI.localhost.json
 // and to tsc and eslint, we say "please excuse me" as follows:
-// @ts-ignore
-// eslint-disable-next-line import/no-unresolved
-import { localhostNETWORK } from './MasterURI.localhost.json';
-import { mainnetNETWORK } from './MasterURI.mainnet.json';
-import { testnetNETWORK } from './MasterURI.testnet.json';
-import { rhobotNETWORK } from './MasterURI.rhobot.json';
-import { demoNETWORK } from './MasterURI.demo.json';
 
 const { freeze, keys, entries, fromEntries } = Object;
 
 // TODO: UI for phloLimit
 const maxFee = { phloPrice: 1, phloLimit: 0.05 * 100000000 };
 
-// TODO: ISSUE: are networks really const? i.e. design-time data?
+import { localhost } from './networks/localhost.js';
+import { testnet } from './networks/testnet.js';
+import { mainnet } from './networks/mainnet.js';
+import { rhobot } from './networks/rhobot.js';
 const NETWORKS = {
-  localhost: {
-    hostPattern: 'localhost',
-    observerBase: 'http://localhost:40403',
-    validatorBase: 'http://localhost:40403',
-    adminBase: 'http://localhost:40405',
-    MasterURI: localhostNETWORK.MasterURI,
-  },
-  testnet: {
-    hostPattern: 'test',
-    observerBase: 'https://observer.testnet.rchain.coop',
-    // TODO: rotate validators
-    validatorBase: 'https://node0.testnet.rchain-dev.tk',
-    adminBase: '',
-    MasterURI: testnetNETWORK.MasterURI,
-  },
-  demo: {
-    hostPattern: 'demo',
-    observerBase: 'https://demoapi.rhobot.net',
-    // TODO: rotate validators
-    validatorBase: 'https://demoapi.rhobot.net',
-    adminBase: 'https://demoadmin.rhobot.net',
-    MasterURI: demoNETWORK.MasterURI,
-  },
-  rhobot: {
-    hostPattern: 'rhobot',
-    observerBase: 'https://rnodeapi.rhobot.net',
-    // TODO: rotate validators
-    validatorBase: 'https://rnodeapi.rhobot.net',
-    adminBase: 'https://rnodeadmin.rhobot.net',
-    MasterURI: rhobotNETWORK.MasterURI,
-  },
-  mainnet: {
-    observerBase: 'https://observer.services.mainnet.rchain.coop',
-    validatorBase: 'https://node12.root-shard.mainnet.rchain.coop',
-    adminBase: '',
-    MasterURI: mainnetNETWORK.MasterURI,
-  },
+  localhost,
+  testnet,
+  mainnet,
+  rhobot,
 };
+
 /**
  * @param {string} hostname
  * @returns {string}
