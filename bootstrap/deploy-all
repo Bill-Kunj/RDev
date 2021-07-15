@@ -98,8 +98,8 @@ echo "{\"localhostNETWORK\": { \"MasterURI\":" > ../src/networks/MasterURI.local
 grep "ReadcapURI" "$LOGFILE" |tail -1 | cut -d' ' -f3|sed '
 s/\}/"/
 s/^/"/
-'>> ../src/MasterURI.localhost.json
-echo "}}" >> ../src/MasterURI.localhost.json
+'>> ../src/networks/MasterURI.localhost.json
+echo "}}" >> ../src/networks/MasterURI.localhost.json
 
 echo "$ME: listing master directory"
 ./deploy listMasterURI.rho
