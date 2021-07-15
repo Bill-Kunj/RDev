@@ -9,9 +9,9 @@ $ME: $HOME/.rnode does not exist. Use 'bootstrap' to fix.
 
 ! ./stop-rnode && exit $?
 
-./list-snapshot |grep "rgov" > /dev/null && echo "$ME: snapshot rgov already exists." && while read -r -p "Use it instead of re-running deploy [y]? " response;do
+./list-snapshot |grep "rdev" > /dev/null && echo "$ME: snapshot rdev already exists." && while read -r -p "Use it instead of re-running deploy [y]? " response;do
    if [ "$response" == 'y' ] || [ -z "$response" ];then
-      ./restore-snapshot "rgov"
+      ./restore-snapshot "rdev"
       exit 0
    else
       echo "$ME: Re-running deploy"
