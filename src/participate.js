@@ -11,7 +11,7 @@ import {
   startTerm,
   listenAtDeployId,
 } from 'rchain-api';
-import { actions } from './actions.js';
+import { actions } from './actions';
 import { RholangGrammar } from './prism-rholang';
 
 // TODO(#185): stop pretending MasterURI is a design-time constant.
@@ -323,7 +323,6 @@ export function buildUI({
       setTimeout,
     }),
   );
-  mount('#groupControl', groupControl(state, { html }));
 }
 
 /**
