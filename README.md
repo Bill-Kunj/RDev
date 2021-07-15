@@ -1,22 +1,71 @@
-# RChain Rgov
+# RChain RDev
 
-This project aims to create an environment to support governance capabilities on RChain designed to support a collective intelligence of members, support other applications forked from this repo, and specifically the development of governance related ideaton awards.
+This project aims to create an environment to support the active development of rholang.
+The RDev developer environment owes its history to the efforts of the [rchain-community](https://github.com/rchain-community), with special note going to the [RGov team](https://github.com/rchain-community/rgov).
+Contributors using `vscode` are encouraged to install the rholang extension, as development of rholang requires more than a simple web interface at this time.
 
-![liquid democracy](https://miro.medium.com/max/701/1*vMFloIdXWyCLYKvwj8eU8Q.png)
+## To run RNode stand-alone on localhost:
+for bootstrapping, snapshots, and updating a rdev localhost instance for linux and Windows-10 WSL2
 
-_image credit: [Liquid Democracy, Ethereum, and the slow path to revolution\. \| Jul 2017 by Luke Duncan \| 1Hive \| Medium](https://medium.com/1hive/liquid-democracy-ethereum-and-the-slow-path-to-revolution-9c1d5916e706)_
+Watch video of how to run an rnode localhost and add rgov actions here https://youtu.be/9TIPXXSXwnE bootstraping updates https://youtu.be/fuXFDRXJsVM
 
-## Progress
- - 2021-07: [Full RGOV developer environment](https://rchain-community.github.io/rgov/)
+## localhost deployment and development
+To create an rchain node locally, deploy rchain dependencies, and deploy rdev use the following commands. These commands will:
+  1) Create several log files in `bootstrap/log`, which can be largely ignored.
+  2) clone the [rchain](https://github.com/rchain/rchain) repository
+  3) deploy rholang files from RChain and RDev
+  4) Create a master dictionary
+  5) Place references to RDev rholang functionality into the master dictionary under a key using the rholang filename
+  6) Generate a JSON file containing the URI of the master dictionary: `src/networks/MasterURI.localhost.json`
+  7) Create a restorable [snapshot](snapshots) containing that can be restored with `restore-snapshot bootstrap`.
+  8) Create a restorable [snapshot](snapshots) containing that can be restored with `restore-snapshot rdev`
+  9) Place the bootstrap rnode log file in `bootstrap/log/run-rnode.log`
 
- - 2021-05: [localhost rgov development](https://docs.google.com/document/d/1V5k9tDjztEVDYiXJG1-Hpb0rNtVcV22GrsdXb0pDUx8/edit#)
-   - [Localhost Setup Demo video](https://www.youtube.com/watch?v=P1jxxElpKX0)
+```bash
+cd bootstrap
+./bootstrap
+./deploy-all
+./run-rnode
+cd ..
+```
 
- - 2021-04: [2021\-04\-22 RGov liquid democracy on RChain demo \- YouTube](https://www.youtube.com/watch?v=JC5RP7IeG5g)
-   - [Community Debrief 227 \- RVote / liquid democracy demo \- RChain Blog](https://blog.rchain.coop/2021/04/23/debrief-227/)
- 
- - 2020-10: [RChain Annual General Meeting Oct 24 2020 \- RChain Blog](https://blog.rchain.coop/2020/10/27/rchain-annual-general-meeting-oct24-2020/) demo at RChain Annual Meeting
+## dev interface installation
+```bash
+npm install
+```
 
- - 2020-04: [Liquid (superfluid) Democracy + Trust Metric](https://docs.google.com/document/d/14JJPWtrFxkxzHa1NAmwzhTmeQO1vJtKDOJgBB_MPyfY/edit) 1st prize winner of RChain dApp idea workshop
+## running dev interface
+This command will bundle the RDev JavaScript, build the RDev web page, and open your browser to rdev.
+```bash
+npm start
+```
 
- - 2018-02 [Collective Intelligence Best Practices Governance forum lightning talk \- Google Slides](https://docs.google.com/presentation/d/1qFK10rFcCiBO72aeSFIfII0e1TeIXDKgZqwVlP-wREk/edit?pli=1#slide=id.p), [video](https://youtu.be/Mmkae9E93tk?t=6422) presented at RChain governance workshop
+## snapshots
+Restore a snapshot previously created with `create-snapshot`
+```bash
+cd bootstrap && restore-snapshot
+```
+
+After initial bootstrap and deploy-all, there will be two snapshots available: `bootstrap` and `rdev`
+
+List snapshots available for restore
+```bash
+cd bootstrap
+list-snapshot
+```
+
+Save a copy of the localhost rnode that can be restored at a later date
+```bash
+cd bootstrap  && create-snapshot
+```
+
+## Command line deployment of rholang
+Deploy the rholang file "test.rho"
+```bash
+cd bootstrap
+./deploy ../test.rho
+```
+Propose the previously deployed rholang file "test.rho"
+```bash
+bootstrap/propose
+```
