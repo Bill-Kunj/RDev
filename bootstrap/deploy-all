@@ -69,8 +69,8 @@ if [ -f "$ERRORLOG" ]; then
 fi
 
 # deploy RDev
-find \
-../rdev/Directory.rho \
+find ../rholang \
+-name "*.rho" \
 | deployFiles
 
 if [ -f "$ERRORLOG" ]; then
