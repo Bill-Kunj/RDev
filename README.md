@@ -2,7 +2,7 @@
 
 This project aims to create an environment to support the active development of rholang.
 The RDev developer environment owes its history to the efforts of the [rchain-community](https://github.com/rchain-community), with special note going to the [RGov team](https://github.com/rchain-community/rgov).
-Contributors using `vscode` are encouraged to install the rholang extension, as development of rholang requires more than a simple web interface at this time.
+Contributors using `vscode` are encouraged to install the rholang extension, as development of rholang sometimes requires more than a simple web interface.
 
 ## To run RNode stand-alone on localhost:
 for bootstrapping, snapshots, and updating a rdev localhost instance for linux and Windows-10 WSL2
