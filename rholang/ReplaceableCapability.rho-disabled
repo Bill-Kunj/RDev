@@ -45,4 +45,4 @@ new stdout(`rho:io:stdout`), myChan, ret, kickme in {
       thiscap!("goodbye world!")
     }
   }
-}}}
+}}
